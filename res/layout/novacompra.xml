@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+
+    <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="Quantidade do Item"/>
+
+    <EditText
+            android:id="@+id/qtd_item"
+            android:numeric="integer"
+            android:inputType="number"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent" />
+
+    <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="Preço unitário"/>
+
+    <EditText
+            android:id="@+id/precoUnitario"
+            android:numeric="decimal"
+            android:inputType="numberDecimal"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent" />
+
+    <Button android:text="Incluir"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="incluirItem"/>
+
+
+
+
+    <TextView android:id="@+id/total"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text=""/>
+
+    <ListView
+        android:id="@+id/listaItens"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+            />
+
+    <TextView android:id="@+id/listViewItem"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"/>
+
+
+</LinearLayout>
