@@ -20,7 +20,7 @@ public final class R {
         public static final int total=0x7f040004;
     }
     public static final class layout {
-        public static final int list_iten=0x7f020000;
+        public static final int list_item =0x7f020000;
         public static final int main=0x7f020001;
         public static final int novacompra=0x7f020002;
     }

@@ -47,7 +47,7 @@ public class NovaCompraActivity   extends Activity {
         cleanFields();
 
         ArrayAdapter adapter = new ArrayAdapter<String>(this,
-                R.layout.list_iten,compra.getItensName());
+                R.layout.list_item,compra.getItensName());
 
         ((ListView) findViewById(R.id.listaItens)).setAdapter(adapter);
     }
