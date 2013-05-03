@@ -40,7 +40,7 @@ public class ItemArrayAdapter extends ArrayAdapter<Item> {
         TextView textView = (TextView) rowView.findViewById(R.id.label);
         ImageView imageView = (ImageView) rowView.findViewById(R.id.logo);
         textView.setText(values.get(position).toString());
-        imageView.setImageBitmap(values.get(position).getFoto());
+        imageView.setImageBitmap(values.get(position).getFoto().getImage());
         return rowView;
     }
 }

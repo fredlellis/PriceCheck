@@ -1,5 +1,6 @@
 package br.lellis.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.List;
  * Time: 17:43
  * To change this template use File | Settings | File Templates.
  */
-public class Compra {
+public class Compra implements Serializable {
 
     private List<Item> itens = new ArrayList<Item>();
     private Calendar dataCompra;

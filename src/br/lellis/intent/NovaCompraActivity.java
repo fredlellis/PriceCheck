@@ -3,16 +3,33 @@ package br.lellis.intent;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
-import android.widget.*;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
 import br.lellis.R;
+import br.lellis.activity.ItemDetailAcivity;
 import br.lellis.adapter.ItemArrayAdapter;
 import br.lellis.entity.Compra;
 import br.lellis.entity.Item;
+import br.lellis.entity.SerializableImage;
+import br.lellis.factory.AlbumStorageDirFactory;
+import br.lellis.factory.BaseAlbumDirFactory;
+import br.lellis.factory.FroyoAlbumDirFactory;
+import br.lellis.listener.ItemListClickListener;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.Serializable;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,17 +38,26 @@ import java.math.BigDecimal;
  * Time: 17:22
  * To change this template use File | Settings | File Templates.
  */
-public class NovaCompraActivity   extends Activity {
+public class NovaCompraActivity   extends Activity implements Serializable {
 
     private Compra compra;
-    private Bitmap foto;
+    private SerializableImage foto;
     private static final int ACTION_TAKE_PHOTO_S = 2;
+    private AlbumStorageDirFactory mAlbumStorageDirFactory;
+    private String mCurrentPhotoPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.novacompra);
         compra = new Compra();
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO) {
+            mAlbumStorageDirFactory = new FroyoAlbumDirFactory();
+        } else {
+            mAlbumStorageDirFactory = new BaseAlbumDirFactory();
+        }
     }
 
     public void incluirItem(View view){
@@ -49,22 +75,61 @@ public class NovaCompraActivity   extends Activity {
         listarItens();
     }
 
+    private File setUpPhotoFile() throws IOException {
+
+        File f = createImageFile();
+        mCurrentPhotoPath = f.getAbsolutePath();
+
+        return f;
+    }
+
+    private static final String JPEG_FILE_PREFIX = "IMG_";
+    private static final String JPEG_FILE_SUFFIX = ".jpg";
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = JPEG_FILE_PREFIX + timeStamp + "_";
+        File albumF = getAlbumDir();
+        File imageF = File.createTempFile(imageFileName, JPEG_FILE_SUFFIX, albumF);
+        return imageF;
+    }
+
+    private File getAlbumDir() {
+        File storageDir = null;
+
+        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
+
+            storageDir = mAlbumStorageDirFactory.getAlbumStorageDir(getAlbumName());
+
+            if (storageDir != null) {
+                if (! storageDir.mkdirs()) {
+                    if (! storageDir.exists()){
+                        Log.d("CameraSample", "failed to create directory");
+                        return null;
+                    }
+                }
+            }
+
+        } else {
+            Log.v(getString(R.string.app_name), "External storage is not mounted READ/WRITE.");
+        }
+
+        return storageDir;
+    }
+
+    /* Photo album for this application */
+    private String getAlbumName() {
+        return getString(R.string.album_name);
+    }
+
     private void listarItens() {
         ArrayAdapter adapter = new ItemArrayAdapter(this,compra.getItens());
 
+        final Intent resultadoDisplay = new Intent(this, ItemDetailAcivity.class);
+
         ((ListView) findViewById(R.id.listaItens)).setAdapter(adapter);
-        ((ListView) findViewById(R.id.listaItens)).setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                Item item = (Item) parent.getAdapter().getItem(position);
-                System.out.println(item);
-                Toast.makeText(getApplicationContext(),
-                        "item Removido: "+item.toString(), Toast.LENGTH_SHORT).show();
-                ((ItemArrayAdapter)parent.getAdapter()).remove(item);
-                compra.getItens().remove(item);
-                atualizarTotal();
-            }
-        });
+        ((ListView) findViewById(R.id.listaItens)).setOnItemClickListener(new ItemListClickListener(this, resultadoDisplay, foto.getImage()));
     }
 
     private void atualizarTotal() {
@@ -76,7 +141,6 @@ public class NovaCompraActivity   extends Activity {
     private void cleanFields(){
         ((TextView)findViewById(R.id.qtd_item)).setText("");
         ((TextView)findViewById(R.id.precoUnitario)).setText("");
-        foto = null;
     }
 
     public void tirarFoto(View view){
@@ -91,7 +155,8 @@ public class NovaCompraActivity   extends Activity {
 
     private void handleSmallCameraPhoto(Intent intent) {
         Bundle extras = intent.getExtras();
-        foto = (Bitmap) extras.get("data");
+        foto = new SerializableImage();
+        foto.setImage((Bitmap) extras.get("data"));
     }
 
     @Override

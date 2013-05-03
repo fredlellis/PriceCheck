@@ -1,0 +1,26 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:background="@android:color/background_light"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="vertical"
+              android:padding="5dp" >
+
+
+    <ImageView android:id="@+id/imageDetail"
+               android:layout_width="30px"
+               android:layout_height="30px"
+               android:layout_marginLeft="5px"
+               android:layout_marginRight="20px"
+               android:layout_marginTop="5px"
+               android:layout_marginBottom="10px"/>
+
+    <TextView android:id="@+id/itemDetailPreco"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="10px"/>
+
+    <TextView android:id="@+id/itemDetailQtd"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"/>
+
+</LinearLayout>

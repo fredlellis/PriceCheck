@@ -3,18 +3,24 @@
           package="br.lellis"
           android:versionCode="1"
           android:versionName="1.0">
+    <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="10" />
     <uses-feature android:name="android.hardware.camera" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-sdk android:minSdkVersion="10"/>
     <application android:label="@string/app_name">
         <activity android:name="InitActivity"
-                  android:label="@string/app_name">
+                  android:screenOrientation="portrait"
+                  android:label="@string/app_name"
+                  android:icon="@drawable/img_128_128_deposit">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity android:name=".intent.NovaCompraActivity"
+                  android:screenOrientation="portrait"
                   android:label="@string/tituloNovaCompra"/>
+        <activity android:name=".activity.ItemDetailAcivity"
+                  android:screenOrientation="portrait"
+                android:label="@string/detalhe"/>
     </application>
 </manifest> 

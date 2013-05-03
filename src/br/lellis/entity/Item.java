@@ -1,7 +1,7 @@
 package br.lellis.entity;
 
-import android.graphics.Bitmap;
-
+import java.io.File;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
@@ -12,14 +12,23 @@ import java.math.RoundingMode;
  * Time: 17:44
  * To change this template use File | Settings | File Templates.
  */
-public class Item {
+public class Item implements Serializable {
 
     private BigDecimal precoUnitario;
     private Integer quantidade;
-    private Bitmap foto;
+    private SerializableImage foto;
+    private File imageFile;
+
+    public File getImageFile() {
+        return imageFile;
+    }
+
+    public void setImageFile(File imageFile) {
+        this.imageFile = imageFile;
+    }
 
     public BigDecimal getPrecoUnitario() {
-        return precoUnitario;
+        return precoUnitario.setScale(2, RoundingMode.HALF_UP);
     }
 
     public void setPrecoUnitario(BigDecimal precoUnitario) {
@@ -38,12 +47,12 @@ public class Item {
         return precoUnitario.multiply(new BigDecimal(quantidade.intValue()));
     }
 
-    public void setFoto(Bitmap foto) {
-        this.foto = foto;
+    public SerializableImage getFoto() {
+        return foto;
     }
 
-    public Bitmap getFoto() {
-        return foto;
+    public void setFoto(SerializableImage foto) {
+        this.foto = foto;
     }
 
     @Override
