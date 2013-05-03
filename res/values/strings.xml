@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">PrizesCheck</string>
+    <string name="app_name">Price$Check</string>
+    <string name="textoEntrada">Bem vindo ao PriceCheck, aqui ao final de suas compras voce tera o resumo da compra com o valor total, e com isso poderá verificar o total indicado no Caixa.</string>
+    <string name="btn_novaCompra">Iniciar nova Compra</string>
+    <string name="tituloNovaCompra">Nova Compra</string>
 </resources>

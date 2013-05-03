@@ -1,5 +1,7 @@
 package br.lellis.entity;
 
+import android.graphics.Bitmap;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
@@ -14,6 +16,7 @@ public class Item {
 
     private BigDecimal precoUnitario;
     private Integer quantidade;
+    private Bitmap foto;
 
     public BigDecimal getPrecoUnitario() {
         return precoUnitario;
@@ -35,11 +38,20 @@ public class Item {
         return precoUnitario.multiply(new BigDecimal(quantidade.intValue()));
     }
 
+    public void setFoto(Bitmap foto) {
+        this.foto = foto;
+    }
+
+    public Bitmap getFoto() {
+        return foto;
+    }
+
     @Override
     public String toString() {
-        return "Item{" +
-                "precoUnitario=" + precoUnitario.setScale(2, RoundingMode.HALF_UP) +
-                ", quantidade=" + quantidade +
-                '}';
+        return "R$=" + precoUnitario.setScale(2, RoundingMode.HALF_UP) +
+                " , Quantidade=" + quantidade;
+
     }
+
+
 }

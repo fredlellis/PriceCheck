@@ -1,17 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:background="@android:color/background_light"
               android:orientation="vertical"
-              android:layout_width="fill_parent"
+              android:layout_width="wrap_content"
               android:layout_height="fill_parent"
-        >
+              android:paddingTop="50px"
+              android:paddingLeft="10px"
+              android:paddingRight="10px"
+              android:layout_centerHorizontal="true"
+              android:layout_centerVertical="true">
+
+    <TextView android:layout_height="wrap_content"
+              android:layout_width="wrap_content"
+              android:paddingBottom="30px"
+              android:textStyle="bold"
+              android:text="@string/textoEntrada"/>
+
     <Button android:id="@+id/btnNovaCompra" android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Iniciar nova Compra"
+            android:text="@string/btn_novaCompra"
             android:onClick="novaCompra"
             />
-    <Button android:id="@+id/btnRecuperaCompra" android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Recupera Compra"
-            />
+    <!--<Button android:id="@+id/btnRecuperaCompra" android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Recupera Compra"-->
+            <!--/>-->
 </LinearLayout>
 
