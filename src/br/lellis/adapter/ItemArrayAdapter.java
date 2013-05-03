@@ -37,10 +37,13 @@ public class ItemArrayAdapter extends ArrayAdapter<Item> {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View rowView = inflater.inflate(R.layout.list_item, parent, false);
+
         TextView textView = (TextView) rowView.findViewById(R.id.label);
         ImageView imageView = (ImageView) rowView.findViewById(R.id.logo);
         textView.setText(values.get(position).toString());
-        imageView.setImageBitmap(values.get(position).getFoto().getImage());
+        if (values.get(position).comFoto()){
+            imageView.setImageBitmap(values.get(position).getFoto().getImage());
+        }
         return rowView;
     }
 }

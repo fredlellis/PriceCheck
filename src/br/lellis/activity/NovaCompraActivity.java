@@ -1,4 +1,4 @@
-package br.lellis.intent;
+package br.lellis.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,12 +9,8 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.*;
 import br.lellis.R;
-import br.lellis.activity.ItemDetailAcivity;
 import br.lellis.adapter.ItemArrayAdapter;
 import br.lellis.entity.Compra;
 import br.lellis.entity.Item;
@@ -65,14 +61,20 @@ public class NovaCompraActivity   extends Activity implements Serializable {
         EditText ETPreco = (EditText) findViewById(R.id.precoUnitario);
         EditText ETQtd = (EditText) findViewById(R.id.qtd_item);
 
-        novoItem.setPrecoUnitario(new BigDecimal(ETPreco.getText().toString()));
-        novoItem.setQuantidade(new Integer(ETQtd.getText().toString()));
-        novoItem.setFoto(foto);
-        compra.getItens().add(novoItem);
+        try{
+            novoItem.setPrecoUnitario(new BigDecimal(ETPreco.getText().toString()));
+            novoItem.setQuantidade(new Integer(ETQtd.getText().toString()));
+            novoItem.setFoto(foto);
+            compra.getItens().add(novoItem);
 
-        atualizarTotal();
-        cleanFields();
-        listarItens();
+            atualizarTotal();
+            cleanFields();
+            listarItens();
+        }
+        catch (Exception ex){
+
+        }
+
     }
 
     private File setUpPhotoFile() throws IOException {
@@ -129,7 +131,19 @@ public class NovaCompraActivity   extends Activity implements Serializable {
         final Intent resultadoDisplay = new Intent(this, ItemDetailAcivity.class);
 
         ((ListView) findViewById(R.id.listaItens)).setAdapter(adapter);
-        ((ListView) findViewById(R.id.listaItens)).setOnItemClickListener(new ItemListClickListener(this, resultadoDisplay, foto.getImage()));
+        ((ListView) findViewById(R.id.listaItens)).setOnItemClickListener(new ItemListClickListener(this, resultadoDisplay));
+        ((ListView) findViewById(R.id.listaItens)).setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Item item = (Item) adapterView.getAdapter().getItem(i);
+                Toast.makeText(getApplicationContext(),
+                        "Item Removido: "+item.toString(), Toast.LENGTH_SHORT).show();
+                ((ItemArrayAdapter)adapterView.getAdapter()).remove(item);
+                compra.getItens().remove(item);
+                atualizarTotal();
+                return false;
+            }
+        });
     }
 
     private void atualizarTotal() {

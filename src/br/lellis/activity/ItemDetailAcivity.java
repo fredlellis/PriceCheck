@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
-import br.lellis.InitActivity;
 import br.lellis.R;
 import br.lellis.entity.Item;
 
@@ -26,17 +25,20 @@ public class ItemDetailAcivity extends Activity {
 
         // Get the message from the intent
         Intent intent = getIntent();
-        Item resultado = (Item) intent.getSerializableExtra(InitActivity.ITEM_SELECIONADO);
-        Bitmap bitmap = (Bitmap) intent.getParcelableExtra(InitActivity.BITMAP);
+        Item itemParaDetalhar = (Item) intent.getSerializableExtra(InitActivity.ITEM_SELECIONADO);
+
 
 
         ImageView imagemItemDetalhe = (ImageView) findViewById(R.id.imageDetail);
         TextView precoItemDetalhe = (TextView) findViewById(R.id.itemDetailPreco);
         TextView qtdItemDetalhe = (TextView) findViewById(R.id.itemDetailQtd);
 
-        imagemItemDetalhe.setImageBitmap(bitmap);
-        precoItemDetalhe.setText("Preco Unitário: "+resultado.getPrecoUnitario().toString());
-        qtdItemDetalhe.setText("Quantidade: "+resultado.getQuantidade().toString());
+        if (itemParaDetalhar.comFoto()){
+            Bitmap bitmap = (Bitmap) intent.getParcelableExtra(InitActivity.BITMAP);
+            imagemItemDetalhe.setImageBitmap(bitmap);
+        }
+        precoItemDetalhe.setText("Preco Unitário: " + itemParaDetalhar.getPrecoUnitario().toString());
+        qtdItemDetalhe.setText("Quantidade: "+itemParaDetalhar.getQuantidade().toString());
 
     }
 }

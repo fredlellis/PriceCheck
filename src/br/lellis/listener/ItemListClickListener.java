@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.AdapterView;
-import br.lellis.InitActivity;
+import br.lellis.activity.InitActivity;
 import br.lellis.entity.Item;
 
 /**
@@ -28,11 +28,18 @@ public class ItemListClickListener implements AdapterView.OnItemClickListener {
 
     }
 
+    public ItemListClickListener(Activity activity, Intent intentToGo) {
+        activityCall = activity;
+        this.intentToGo = intentToGo;
+    }
+
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Item item = (Item) adapterView.getAdapter().getItem(i);
         intentToGo.putExtra(InitActivity.ITEM_SELECIONADO, item);
-        intentToGo.putExtra(InitActivity.BITMAP, bitMap);
+        if (item.comFoto()){
+            intentToGo.putExtra(InitActivity.BITMAP, item.getFoto().getImage());
+        }
         activityCall.startActivity(intentToGo);
     }
 }

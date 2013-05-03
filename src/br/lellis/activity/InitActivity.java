@@ -1,10 +1,10 @@
-package br.lellis;
+package br.lellis.activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import br.lellis.intent.NovaCompraActivity;
+import br.lellis.R;
 
 public class InitActivity extends Activity {
     public static final String ITEM_SELECIONADO = "itemdetalhado";

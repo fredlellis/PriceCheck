@@ -16,7 +16,7 @@ public class Item implements Serializable {
 
     private BigDecimal precoUnitario;
     private Integer quantidade;
-    private SerializableImage foto;
+    private SerializableImage foto = new SerializableImage();
     private File imageFile;
 
     public File getImageFile() {
@@ -63,4 +63,7 @@ public class Item implements Serializable {
     }
 
 
+    public boolean comFoto() {
+        return foto != null;
+    }
 }
