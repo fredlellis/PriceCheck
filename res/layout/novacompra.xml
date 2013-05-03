@@ -62,8 +62,9 @@
     <TextView android:id="@+id/total"
               android:textColor="@android:color/black"
               android:layout_height="wrap_content"
+              android:textStyle="bold"
               android:layout_width="fill_parent"
-              android:textSize="15px"
+              android:textSize="20px"
               android:background="@drawable/back"/>
 
 

@@ -1,4 +1,4 @@
-package br.lellis.factory;
+package br.com.lellis.activity.factory;
 
 import java.io.File;
 

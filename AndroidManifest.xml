@@ -7,7 +7,7 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <application android:label="@string/app_name">
-        <activity android:name=".activity.InitActivity"
+        <activity android:name="br.com.lellis.activity.activity.InitActivity"
                   android:screenOrientation="portrait"
                   android:label="@string/app_name"
                   android:icon="@drawable/img_128_128_deposit">
@@ -16,10 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activity.NovaCompraActivity"
+        <activity android:name="br.com.lellis.activity.activity.NovaCompraActivity"
                   android:screenOrientation="portrait"
                   android:label="@string/tituloNovaCompra"/>
-        <activity android:name=".activity.ItemDetailAcivity"
+        <activity android:name="br.com.lellis.activity.activity.ItemDetailAcivity"
                   android:screenOrientation="portrait"
                 android:label="@string/detalhe"/>
     </application>

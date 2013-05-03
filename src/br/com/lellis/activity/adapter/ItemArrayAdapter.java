@@ -1,4 +1,4 @@
-package br.lellis.adapter;
+package br.com.lellis.activity.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import br.lellis.R;
-import br.lellis.entity.Item;
+import br.com.lellis.activity.entity.Item;
 
 import java.util.List;
 

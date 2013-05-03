@@ -1,4 +1,4 @@
-package br.lellis.entity;
+package br.com.lellis.activity.entity;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

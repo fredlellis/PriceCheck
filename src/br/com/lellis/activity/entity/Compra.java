@@ -1,4 +1,4 @@
-package br.lellis.entity;
+package br.com.lellis.activity.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

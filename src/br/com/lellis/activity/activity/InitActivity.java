@@ -1,4 +1,4 @@
-package br.lellis.activity;
+package br.com.lellis.activity.activity;
 
 import android.app.Activity;
 import android.content.Intent;

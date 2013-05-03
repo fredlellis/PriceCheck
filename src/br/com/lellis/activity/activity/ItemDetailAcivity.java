@@ -1,4 +1,4 @@
-package br.lellis.activity;
+package br.com.lellis.activity.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 import br.lellis.R;
-import br.lellis.entity.Item;
+import br.com.lellis.activity.entity.Item;
 
 /**
  * Created with IntelliJ IDEA.

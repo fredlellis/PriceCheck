@@ -1,31 +1,23 @@
-package br.lellis.activity;
+package br.com.lellis.activity.activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.*;
+import br.com.lellis.activity.entity.SerializableImage;
+import br.com.lellis.activity.listener.ItemListClickListener;
 import br.lellis.R;
-import br.lellis.adapter.ItemArrayAdapter;
-import br.lellis.entity.Compra;
-import br.lellis.entity.Item;
-import br.lellis.entity.SerializableImage;
-import br.lellis.factory.AlbumStorageDirFactory;
-import br.lellis.factory.BaseAlbumDirFactory;
-import br.lellis.factory.FroyoAlbumDirFactory;
-import br.lellis.listener.ItemListClickListener;
+import br.com.lellis.activity.adapter.ItemArrayAdapter;
+import br.com.lellis.activity.entity.Compra;
+import br.com.lellis.activity.entity.Item;
+import br.com.lellis.activity.entity.SerializableImage;
+import br.com.lellis.activity.listener.ItemListClickListener;
 
-import java.io.File;
-import java.io.IOException;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
@@ -39,21 +31,13 @@ public class NovaCompraActivity   extends Activity implements Serializable {
     private Compra compra;
     private SerializableImage foto;
     private static final int ACTION_TAKE_PHOTO_S = 2;
-    private AlbumStorageDirFactory mAlbumStorageDirFactory;
-    private String mCurrentPhotoPath;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.novacompra);
         compra = new Compra();
-
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO) {
-            mAlbumStorageDirFactory = new FroyoAlbumDirFactory();
-        } else {
-            mAlbumStorageDirFactory = new BaseAlbumDirFactory();
-        }
     }
 
     public void incluirItem(View view){
@@ -77,53 +61,6 @@ public class NovaCompraActivity   extends Activity implements Serializable {
 
     }
 
-    private File setUpPhotoFile() throws IOException {
-
-        File f = createImageFile();
-        mCurrentPhotoPath = f.getAbsolutePath();
-
-        return f;
-    }
-
-    private static final String JPEG_FILE_PREFIX = "IMG_";
-    private static final String JPEG_FILE_SUFFIX = ".jpg";
-
-    private File createImageFile() throws IOException {
-        // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = JPEG_FILE_PREFIX + timeStamp + "_";
-        File albumF = getAlbumDir();
-        File imageF = File.createTempFile(imageFileName, JPEG_FILE_SUFFIX, albumF);
-        return imageF;
-    }
-
-    private File getAlbumDir() {
-        File storageDir = null;
-
-        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
-
-            storageDir = mAlbumStorageDirFactory.getAlbumStorageDir(getAlbumName());
-
-            if (storageDir != null) {
-                if (! storageDir.mkdirs()) {
-                    if (! storageDir.exists()){
-                        Log.d("CameraSample", "failed to create directory");
-                        return null;
-                    }
-                }
-            }
-
-        } else {
-            Log.v(getString(R.string.app_name), "External storage is not mounted READ/WRITE.");
-        }
-
-        return storageDir;
-    }
-
-    /* Photo album for this application */
-    private String getAlbumName() {
-        return getString(R.string.album_name);
-    }
 
     private void listarItens() {
         ArrayAdapter adapter = new ItemArrayAdapter(this,compra.getItens());

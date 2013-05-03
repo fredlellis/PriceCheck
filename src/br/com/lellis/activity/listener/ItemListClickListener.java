@@ -1,12 +1,12 @@
-package br.lellis.listener;
+package br.com.lellis.activity.listener;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.AdapterView;
-import br.lellis.activity.InitActivity;
-import br.lellis.entity.Item;
+import br.com.lellis.activity.activity.InitActivity;
+import br.com.lellis.activity.entity.Item;
 
 /**
  * Created with IntelliJ IDEA.

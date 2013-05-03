@@ -1,4 +1,4 @@
-package br.lellis.entity;
+package br.com.lellis.activity.entity;
 
 import java.io.File;
 import java.io.Serializable;
