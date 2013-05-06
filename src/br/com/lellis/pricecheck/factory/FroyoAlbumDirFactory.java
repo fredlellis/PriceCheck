@@ -1,4 +1,4 @@
-package br.com.lellis.activity.factory;
+package br.com.lellis.pricecheck.factory;
 
 import android.os.Environment;
 

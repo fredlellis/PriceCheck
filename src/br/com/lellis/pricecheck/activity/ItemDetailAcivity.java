@@ -1,4 +1,4 @@
-package br.com.lellis.activity.activity;
+package br.com.lellis.pricecheck.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,8 +6,8 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
-import br.lellis.R;
-import br.com.lellis.activity.entity.Item;
+import br.com.lellis.pricecheck.R;
+import br.com.lellis.pricecheck.entity.Item;
 
 /**
  * Created with IntelliJ IDEA.

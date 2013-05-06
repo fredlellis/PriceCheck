@@ -1,4 +1,4 @@
-package br.com.lellis.activity.entity;
+package br.com.lellis.pricecheck.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -14,7 +14,7 @@ import java.util.List;
  * Time: 17:43
  * To change this template use File | Settings | File Templates.
  */
-public class Compra implements Serializable {
+public class Compra implements Serializable{
 
     private List<Item> itens = new ArrayList<Item>();
     private Calendar dataCompra;
@@ -58,4 +58,6 @@ public class Compra implements Serializable {
 
         return "Total ate o momento: R$" +total.setScale(2, RoundingMode.HALF_UP).toString();
     }
+
+
 }

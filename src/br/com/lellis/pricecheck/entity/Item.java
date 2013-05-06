@@ -1,4 +1,4 @@
-package br.com.lellis.activity.entity;
+package br.com.lellis.pricecheck.entity;
 
 import java.io.File;
 import java.io.Serializable;

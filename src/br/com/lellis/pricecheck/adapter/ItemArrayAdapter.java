@@ -1,4 +1,4 @@
-package br.com.lellis.activity.adapter;
+package br.com.lellis.pricecheck.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import br.lellis.R;
-import br.com.lellis.activity.entity.Item;
+import br.com.lellis.pricecheck.R;
+import br.com.lellis.pricecheck.entity.Item;
 
 import java.util.List;
 

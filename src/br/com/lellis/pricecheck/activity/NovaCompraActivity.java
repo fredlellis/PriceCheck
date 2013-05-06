@@ -1,4 +1,4 @@
-package br.com.lellis.activity.activity;
+package br.com.lellis.pricecheck.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,14 +7,12 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.*;
-import br.com.lellis.activity.entity.SerializableImage;
-import br.com.lellis.activity.listener.ItemListClickListener;
-import br.lellis.R;
-import br.com.lellis.activity.adapter.ItemArrayAdapter;
-import br.com.lellis.activity.entity.Compra;
-import br.com.lellis.activity.entity.Item;
-import br.com.lellis.activity.entity.SerializableImage;
-import br.com.lellis.activity.listener.ItemListClickListener;
+import br.com.lellis.pricecheck.R;
+import br.com.lellis.pricecheck.adapter.ItemArrayAdapter;
+import br.com.lellis.pricecheck.entity.Compra;
+import br.com.lellis.pricecheck.entity.Item;
+import br.com.lellis.pricecheck.entity.SerializableImage;
+import br.com.lellis.pricecheck.listener.ItemListClickListener;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -28,7 +26,7 @@ import java.math.BigDecimal;
  */
 public class NovaCompraActivity   extends Activity implements Serializable {
 
-    private Compra compra;
+    public Compra compra;
     private SerializableImage foto;
     private static final int ACTION_TAKE_PHOTO_S = 2;
 
@@ -92,6 +90,7 @@ public class NovaCompraActivity   extends Activity implements Serializable {
     private void cleanFields(){
         ((TextView)findViewById(R.id.qtd_item)).setText("");
         ((TextView)findViewById(R.id.precoUnitario)).setText("");
+        foto = null;
     }
 
     public void tirarFoto(View view){
@@ -121,5 +120,4 @@ public class NovaCompraActivity   extends Activity implements Serializable {
             }
         }
     }
-
 }

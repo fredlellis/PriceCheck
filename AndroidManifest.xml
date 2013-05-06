@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="br.lellis"
-          android:versionCode="1"
+          package="br.com.lellis.pricecheck"
+          android:versionCode="2"
           android:versionName="1.0">
     <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="10" />
     <uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.SET_DEBUG_APP"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <application android:label="@string/app_name">
-        <activity android:name="br.com.lellis.activity.activity.InitActivity"
+    <application android:label="@string/app_name"
+                 android:icon="@drawable/icon">
+        <activity android:name=".activity.InitActivity"
                   android:screenOrientation="portrait"
                   android:label="@string/app_name"
-                  android:icon="@drawable/img_128_128_deposit">
+                  android:icon="@drawable/icon">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="br.com.lellis.activity.activity.NovaCompraActivity"
+        <activity android:name=".activity.NovaCompraActivity"
                   android:screenOrientation="portrait"
                   android:label="@string/tituloNovaCompra"/>
-        <activity android:name="br.com.lellis.activity.activity.ItemDetailAcivity"
+        <activity android:name=".activity.ItemDetailAcivity"
                   android:screenOrientation="portrait"
-                android:label="@string/detalhe"/>
+                  android:label="@string/detalhe"/>
     </application>
 </manifest> 

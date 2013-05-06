@@ -1,14 +1,13 @@
-package br.com.lellis.activity.tool;
+package br.com.lellis.pricecheck.tool;
 
 import android.app.Activity;
 import android.os.Build;
 import android.os.Environment;
 import android.util.Log;
-import br.com.lellis.activity.factory.FroyoAlbumDirFactory;
-import br.lellis.R;
-import br.com.lellis.activity.factory.AlbumStorageDirFactory;
-import br.com.lellis.activity.factory.BaseAlbumDirFactory;
-import br.com.lellis.activity.factory.FroyoAlbumDirFactory;
+import br.com.lellis.pricecheck.R;
+import br.com.lellis.pricecheck.factory.AlbumStorageDirFactory;
+import br.com.lellis.pricecheck.factory.BaseAlbumDirFactory;
+import br.com.lellis.pricecheck.factory.FroyoAlbumDirFactory;
 
 import java.io.File;
 import java.io.IOException;
