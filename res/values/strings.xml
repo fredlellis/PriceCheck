@@ -5,10 +5,13 @@
     <string name="textoEntrada2">Aqui ao final de suas compras você terá o resumo de sua compra com o valor total e os itens fotografados, com isso poderá verificar o total indicado no Caixa.</string>
     <string name="btn_novaCompra">Ir as Compras!</string>
     <string name="tituloNovaCompra">Nova Compra</string>
-    <string name="qtdItemLabel">Quantidade do Item</string>
-    <string name="precoUnitarioLabel">Preço unitário</string>
+    <string name="qtdItemLabel">Quantidade do Item:</string>
+    <string name="precoUnitarioLabel">Preço unitário:</string>
     <string name="btn_tirarFoto">Fotografar item</string>
     <string name="btn_incluir">Incluir item</string>
     <string name="detalhe">Detlahe do Item</string>
     <string name="album_name">tempAlbum</string>
+    <string name="btn_qrscan">QR Code Scan</string>
+    <string name="qrCodeScan">QR Code Scan</string>
+    <string name="descItem">Descrição do Item:</string>
 </resources>

@@ -14,6 +14,12 @@
                android:layout_marginTop="5px"
                android:layout_marginBottom="10px"/>
 
+    <TextView android:id="@+id/itemDetailDescricao"
+              android:textColor="@android:color/black"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="10px"/>
+
     <TextView android:id="@+id/itemDetailPreco"
               android:textColor="@android:color/black"
               android:layout_width="wrap_content"

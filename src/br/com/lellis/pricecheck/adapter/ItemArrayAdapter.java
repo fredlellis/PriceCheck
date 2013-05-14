@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 import br.com.lellis.pricecheck.R;
 import br.com.lellis.pricecheck.entity.Item;
@@ -39,11 +38,12 @@ public class ItemArrayAdapter extends ArrayAdapter<Item> {
         View rowView = inflater.inflate(R.layout.list_item, parent, false);
 
         TextView textView = (TextView) rowView.findViewById(R.id.label);
-        ImageView imageView = (ImageView) rowView.findViewById(R.id.logo);
         textView.setText(values.get(position).toString());
-        if (values.get(position).comFoto()){
-            imageView.setImageBitmap(values.get(position).getFoto().getImage());
-        }
+
+//        ImageView imageView = (ImageView) rowView.findViewById(R.id.logo);
+//        if (values.get(position).comFoto()){
+//            imageView.setImageBitmap(values.get(position).getFoto().getImage());
+//        }
         return rowView;
     }
 }

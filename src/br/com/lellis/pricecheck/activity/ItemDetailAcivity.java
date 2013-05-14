@@ -32,13 +32,16 @@ public class ItemDetailAcivity extends Activity {
         ImageView imagemItemDetalhe = (ImageView) findViewById(R.id.imageDetail);
         TextView precoItemDetalhe = (TextView) findViewById(R.id.itemDetailPreco);
         TextView qtdItemDetalhe = (TextView) findViewById(R.id.itemDetailQtd);
+        TextView descItemDetalhe = (TextView) findViewById(R.id.itemDetailDescricao);
 
         if (itemParaDetalhar.comFoto()){
             Bitmap bitmap = (Bitmap) intent.getParcelableExtra(InitActivity.BITMAP);
             imagemItemDetalhe.setImageBitmap(bitmap);
         }
+        descItemDetalhe.setText("Descrição: " + itemParaDetalhar.getDescricao());
         precoItemDetalhe.setText("Preco Unitário: " + itemParaDetalhar.getPrecoUnitario().toString());
         qtdItemDetalhe.setText("Quantidade: "+itemParaDetalhar.getQuantidade().toString());
+
 
     }
 }

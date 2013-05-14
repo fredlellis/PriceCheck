@@ -6,14 +6,29 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
+    <TextView android:layout_marginLeft="10px"
+            android:textColor="@android:color/black"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:text="@string/descItem"/>
+
+    <EditText
+            android:layout_marginLeft="10px"
+            android:layout_marginRight="10px"
+            android:id="@+id/desc_item"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent" />
 
     <TextView
+            android:layout_marginLeft="10px"
             android:textColor="@android:color/black"
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
             android:text="@string/qtdItemLabel"/>
 
     <EditText
+            android:layout_marginLeft="10px"
+            android:layout_marginRight="10px"
             android:id="@+id/qtd_item"
             android:numeric="integer"
             android:inputType="number"
@@ -21,12 +36,15 @@
             android:layout_width="fill_parent" />
 
     <TextView
+            android:layout_marginLeft="10px"
             android:textColor="@android:color/black"
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
             android:text="@string/precoUnitarioLabel"/>
 
     <EditText
+            android:layout_marginLeft="10px"
+            android:layout_marginRight="10px"
             android:id="@+id/precoUnitario"
             android:numeric="decimal"
             android:inputType="numberDecimal"
@@ -37,40 +55,47 @@
             android:background="@android:color/background_light"
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:orientation="horizontal"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
+            android:gravity="center"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
-
-        <Button android:text="@string/btn_tirarFoto"
-                android:layout_width="wrap_content"
+        <Button android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/photo24"
                 android:onClick="tirarFoto"
+
                 android:layout_marginLeft="10px"
                 android:layout_marginRight="10px"/>
 
-        <Button android:text="@string/btn_incluir"
+        <Button android:drawableLeft="@drawable/qrcode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="scanQRCode"/>
+
+
+        <Button android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/insert"
-                android:onClick="incluirItem"/>
+                android:onClick="incluirItem"
+                android:layout_marginLeft="10px"
+                android:layout_marginRight="10px"/>
 
     </LinearLayout>
 
     <TextView android:id="@+id/total"
+              android:layout_marginLeft="10px"
+              android:layout_marginRight="10px"
               android:textColor="@android:color/black"
               android:layout_height="wrap_content"
               android:textStyle="bold"
               android:layout_width="fill_parent"
               android:textSize="20px"
+              android:text="Total: "
               android:background="@drawable/back"/>
 
-
-
-
     <ListView
+            android:layout_marginLeft="10px"
+            android:layout_marginRight="10px"
             android:id="@+id/listaItens"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"/>

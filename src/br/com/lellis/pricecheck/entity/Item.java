@@ -18,6 +18,7 @@ public class Item implements Serializable {
     private Integer quantidade;
     private SerializableImage foto = new SerializableImage();
     private File imageFile;
+    private String descricao;
 
     public File getImageFile() {
         return imageFile;
@@ -57,7 +58,7 @@ public class Item implements Serializable {
 
     @Override
     public String toString() {
-        return "R$=" + precoUnitario.setScale(2, RoundingMode.HALF_UP) +
+        return descricao+" R$=" + precoUnitario.setScale(2, RoundingMode.HALF_UP) +
                 " , Quantidade=" + quantidade;
 
     }
@@ -65,5 +66,13 @@ public class Item implements Serializable {
 
     public boolean comFoto() {
         return foto != null;
+    }
+
+    public void setDescricao(String s) {
+        descricao = s;
+    }
+
+    public String getDescricao() {
+        return descricao;
     }
 }

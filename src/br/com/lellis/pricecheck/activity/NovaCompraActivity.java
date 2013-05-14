@@ -26,9 +26,11 @@ import java.math.BigDecimal;
  */
 public class NovaCompraActivity   extends Activity implements Serializable {
 
+    public static final String QR_CODE_DESC_ITEM = "descItem";
     public Compra compra;
     private SerializableImage foto;
     private static final int ACTION_TAKE_PHOTO_S = 2;
+    public static final int ACTION_SCAN_QRCODE = 3;
 
 
     @Override
@@ -42,10 +44,12 @@ public class NovaCompraActivity   extends Activity implements Serializable {
         Item novoItem = new Item();
         EditText ETPreco = (EditText) findViewById(R.id.precoUnitario);
         EditText ETQtd = (EditText) findViewById(R.id.qtd_item);
+        EditText ETDesc = (EditText) findViewById(R.id.desc_item);
 
         try{
             novoItem.setPrecoUnitario(new BigDecimal(ETPreco.getText().toString()));
             novoItem.setQuantidade(new Integer(ETQtd.getText().toString()));
+            novoItem.setDescricao(ETDesc.getText().toString());
             novoItem.setFoto(foto);
             compra.getItens().add(novoItem);
 
@@ -90,11 +94,17 @@ public class NovaCompraActivity   extends Activity implements Serializable {
     private void cleanFields(){
         ((TextView)findViewById(R.id.qtd_item)).setText("");
         ((TextView)findViewById(R.id.precoUnitario)).setText("");
+        ((TextView)findViewById(R.id.desc_item)).setText("");
         foto = null;
     }
 
     public void tirarFoto(View view){
         dispatchTakePictureIntent(ACTION_TAKE_PHOTO_S);
+    }
+
+    public void scanQRCode(View view){
+        Intent scanItent =  new Intent(this, CameraTestActivity.class);
+        startActivityForResult(scanItent, ACTION_SCAN_QRCODE);
     }
 
     private void dispatchTakePictureIntent(int actionCode) {
@@ -118,6 +128,15 @@ public class NovaCompraActivity   extends Activity implements Serializable {
                 }
                 break;
             }
+            case ACTION_SCAN_QRCODE:{
+                if (resultCode != RESULT_CANCELED) {
+                    ((EditText)findViewById(R.id.desc_item)).setText(data.getStringExtra(QR_CODE_DESC_ITEM));
+                }
+                break;
+
+            }
         }
     }
+
+
 }
