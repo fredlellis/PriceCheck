@@ -1,5 +1,7 @@
 package br.com.lellis.pricecheck.entity;
 
+import android.provider.BaseColumns;
+
 import java.io.File;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -12,13 +14,22 @@ import java.math.RoundingMode;
  * Time: 17:44
  * To change this template use File | Settings | File Templates.
  */
-public class Item implements Serializable {
+public class Item implements Serializable, BaseColumns {
+
+    public static final Object COLUMN_NAME_ITEM_ID = "itemID";
+    public static String TABLE_NAME = "item";
+    public static String COLUMN_NAME_PRECO_UNITARIO = "precoUnitario";
+    public static String COLUMN_NAME_QUANTIDADE = "quantidade";
+    public static String COLUMN_NAME_DESCRICAO = "descricao";
+    public static String COLUMN_NAME_FOTO = "foto";
+    public static String COLUMN_NAME_COMPRA_ID = "compraID";
 
     private BigDecimal precoUnitario;
     private Integer quantidade;
     private SerializableImage foto = new SerializableImage();
     private File imageFile;
     private String descricao;
+    private long compraID;
 
     public File getImageFile() {
         return imageFile;
@@ -74,5 +85,13 @@ public class Item implements Serializable {
 
     public String getDescricao() {
         return descricao;
+    }
+
+    public long getCompraID() {
+        return compraID;
+    }
+
+    public void setCompraID(long compraID) {
+        this.compraID = compraID;
     }
 }

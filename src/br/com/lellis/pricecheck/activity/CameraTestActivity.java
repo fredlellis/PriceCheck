@@ -114,8 +114,8 @@ public class CameraTestActivity extends Activity
     public void salvarInfoItem(View view){
 
         Intent returnIntent = new Intent();
-        returnIntent.putExtra(NovaCompraActivity.QR_CODE_DESC_ITEM, scanText.getText());
-        setResult(NovaCompraActivity.ACTION_SCAN_QRCODE,returnIntent);
+        returnIntent.putExtra(CompraActivity.QR_CODE_DESC_ITEM, scanText.getText());
+        setResult(CompraActivity.ACTION_SCAN_QRCODE,returnIntent);
         finish();
 
     }

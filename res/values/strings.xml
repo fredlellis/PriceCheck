@@ -14,4 +14,6 @@
     <string name="btn_qrscan">QR Code Scan</string>
     <string name="qrCodeScan">QR Code Scan</string>
     <string name="descItem">Descrição do Item:</string>
+    <string name="ok">Sim</string>
+    <string name="cancel">não</string>
 </resources>

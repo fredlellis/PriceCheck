@@ -1,12 +1,17 @@
 package br.com.lellis.pricecheck.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.view.Window;
 import android.widget.*;
+
 import br.com.lellis.pricecheck.R;
 import br.com.lellis.pricecheck.adapter.ItemArrayAdapter;
 import br.com.lellis.pricecheck.entity.Compra;
@@ -24,29 +29,82 @@ import java.math.BigDecimal;
  * Time: 17:22
  * To change this template use File | Settings | File Templates.
  */
-public class NovaCompraActivity   extends Activity implements Serializable {
+public class CompraActivity extends Activity implements Serializable {
 
     public static final String QR_CODE_DESC_ITEM = "descItem";
     public Compra compra;
-    private SerializableImage foto;
+    public SerializableImage foto;
     private static final int ACTION_TAKE_PHOTO_S = 2;
     public static final int ACTION_SCAN_QRCODE = 3;
+    private ArrayAdapter listaItemAdapter;
 
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putSerializable(Compra.TABLE_NAME, compra);
+        super.onSaveInstanceState(outState);
+    }
+
+//    @Override
+//    protected void onDestroy() {
+//
+//        if (confirmarDestroir()){
+//            super.onDestroy();
+//        };
+//
+//
+//    }
+
+//    @SuppressLint("Override")
+//    @Override
+//    public boolean onNavigateUp() {
+//
+//        return false;//super.onNavigateUp();
+//    }
+
+    protected Boolean  confirmarDestroir() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+// Add the buttons
+
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+
+
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+
+            }
+        });
+
+
+// Create the AlertDialog
+        AlertDialog dialog = builder.create();
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (savedInstanceState != null && savedInstanceState.getSerializable(Compra.TABLE_NAME) != null) {
+            compra = (Compra) savedInstanceState.getSerializable(Compra.TABLE_NAME);
+            listarItens();
+        } else {
+            compra = new Compra();
+        }
+        requestWindowFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.novacompra);
-        compra = new Compra();
+
     }
 
-    public void incluirItem(View view){
+    public void incluirItem(View view) {
         Item novoItem = new Item();
         EditText ETPreco = (EditText) findViewById(R.id.precoUnitario);
         EditText ETQtd = (EditText) findViewById(R.id.qtd_item);
         EditText ETDesc = (EditText) findViewById(R.id.desc_item);
 
-        try{
+        try {
             novoItem.setPrecoUnitario(new BigDecimal(ETPreco.getText().toString()));
             novoItem.setQuantidade(new Integer(ETQtd.getText().toString()));
             novoItem.setDescricao(ETDesc.getText().toString());
@@ -56,28 +114,27 @@ public class NovaCompraActivity   extends Activity implements Serializable {
             atualizarTotal();
             cleanFields();
             listarItens();
-        }
-        catch (Exception ex){
-
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
 
     }
 
 
     private void listarItens() {
-        ArrayAdapter adapter = new ItemArrayAdapter(this,compra.getItens());
+        listaItemAdapter = new ItemArrayAdapter(this, compra.getItens());
 
         final Intent resultadoDisplay = new Intent(this, ItemDetailAcivity.class);
 
-        ((ListView) findViewById(R.id.listaItens)).setAdapter(adapter);
+        ((ListView) findViewById(R.id.listaItens)).setAdapter(listaItemAdapter);
         ((ListView) findViewById(R.id.listaItens)).setOnItemClickListener(new ItemListClickListener(this, resultadoDisplay));
         ((ListView) findViewById(R.id.listaItens)).setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Item item = (Item) adapterView.getAdapter().getItem(i);
                 Toast.makeText(getApplicationContext(),
-                        "Item Removido: "+item.toString(), Toast.LENGTH_SHORT).show();
-                ((ItemArrayAdapter)adapterView.getAdapter()).remove(item);
+                        "Item Removido: " + item.toString(), Toast.LENGTH_SHORT).show();
+                ((ItemArrayAdapter) adapterView.getAdapter()).remove(item);
                 compra.getItens().remove(item);
                 atualizarTotal();
                 return false;
@@ -87,23 +144,23 @@ public class NovaCompraActivity   extends Activity implements Serializable {
 
     private void atualizarTotal() {
         String total = compra.valorCompra();
-        ((TextView)findViewById(R.id.total)).setText(total);
+        ((TextView) findViewById(R.id.total)).setText(total);
 
     }
 
-    private void cleanFields(){
-        ((TextView)findViewById(R.id.qtd_item)).setText("");
-        ((TextView)findViewById(R.id.precoUnitario)).setText("");
-        ((TextView)findViewById(R.id.desc_item)).setText("");
+    private void cleanFields() {
+        ((TextView) findViewById(R.id.qtd_item)).setText("");
+        ((TextView) findViewById(R.id.precoUnitario)).setText("");
+        ((TextView) findViewById(R.id.desc_item)).setText("");
         foto = null;
     }
 
-    public void tirarFoto(View view){
+    public void tirarFoto(View view) {
         dispatchTakePictureIntent(ACTION_TAKE_PHOTO_S);
     }
 
-    public void scanQRCode(View view){
-        Intent scanItent =  new Intent(this, CameraTestActivity.class);
+    public void scanQRCode(View view) {
+        Intent scanItent = new Intent(this, CameraTestActivity.class);
         startActivityForResult(scanItent, ACTION_SCAN_QRCODE);
     }
 
@@ -128,9 +185,9 @@ public class NovaCompraActivity   extends Activity implements Serializable {
                 }
                 break;
             }
-            case ACTION_SCAN_QRCODE:{
+            case ACTION_SCAN_QRCODE: {
                 if (resultCode != RESULT_CANCELED) {
-                    ((EditText)findViewById(R.id.desc_item)).setText(data.getStringExtra(QR_CODE_DESC_ITEM));
+                    ((EditText) findViewById(R.id.desc_item)).setText(data.getStringExtra(QR_CODE_DESC_ITEM));
                 }
                 break;
 

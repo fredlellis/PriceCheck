@@ -3,7 +3,7 @@
           package="br.com.lellis.pricecheck"
           android:versionCode="3"
           android:versionName="1.1">
-    <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="10" />
+    <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="10" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
@@ -20,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activity.NovaCompraActivity"
+        <activity android:name=".activity.CompraActivity"
                   android:screenOrientation="portrait"
                   android:label="@string/tituloNovaCompra"/>
         <activity android:name=".activity.ItemDetailAcivity"
